@@ -73,3 +73,6 @@ client_secret.json
 **.bin
 **.tar.gz
 /app/mailsync.dSYM
+
+# Webstorm
+.idea
