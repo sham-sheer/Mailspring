@@ -97,31 +97,13 @@
     }
 
     &.next-is-selected {
-      border-bottom: 1px solid @list-selected-border;
+      border-bottom: 1px solid transparent;
     }
 
     &.focused {
       background: @list-focused-bg;
       color: @list-focused-color;
       border-bottom: 1px solid @list-focused-border;
-    }
-  }
-}
-
-body.is-blurred {
-  .list-container {
-    .list-item {
-      &.selected {
-        background: fadeout(desaturate(@list-selected-bg, 100%), 65%);
-        border-bottom: 1px solid fadeout(desaturate(@list-selected-border, 100%), 65%);
-        color: @text-color;
-      }
-
-      &.focused {
-        background: fadeout(desaturate(@list-focused-bg, 100%), 65%);
-        border-bottom: 1px solid fadeout(desaturate(@list-focused-border, 100%), 65%);
-        color: @text-color;
-      }
     }
   }
 }

@@ -10,9 +10,10 @@ import AccountChoosePage from './page-account-choose';
 import AccountSettingsPage from './page-account-settings';
 import AccountSettingsPageGmail from './page-account-settings-gmail';
 import AccountSettingsPageIMAP from './page-account-settings-imap';
+import AccountSettingsPageOffice365 from './page-account-settings-office365';
+import AccountSettingsPageYahoo from './page-account-settings-yahoo';
 import AccountOnboardingSuccess from './page-account-onboarding-success';
 import InitialPreferencesPage from './page-initial-preferences';
-import InitialSubscriptionPage from './page-initial-subscription';
 
 const PageComponents = {
   welcome: WelcomePage,
@@ -21,10 +22,11 @@ const PageComponents = {
   'account-choose': AccountChoosePage,
   'account-settings': AccountSettingsPage,
   'account-settings-gmail': AccountSettingsPageGmail,
+  'account-settings-office365': AccountSettingsPageOffice365,
+  'account-settings-yahoo': AccountSettingsPageYahoo,
   'account-settings-imap': AccountSettingsPageIMAP,
   'account-onboarding-success': AccountOnboardingSuccess,
   'initial-preferences': InitialPreferencesPage,
-  'initial-subscription': InitialSubscriptionPage,
 };
 
 export default class OnboardingRoot extends React.Component {
