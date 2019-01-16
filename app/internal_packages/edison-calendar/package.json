@@ -1,0 +1,39 @@
+{
+  "name": "EdisonCalendar",
+  "main": "./lib/main",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "mailspring": ">=1.3.0"
+  },
+  "windowTypes": {
+    "default": true,
+    "composer": true
+  },
+  "description": "Enter a description of your package!",
+  "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "bootstrap": "^4.1.3",
+    "moment": "^2.22.2",
+    "react": "^16.6.3",
+    "react-big-calendar": "^0.20.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dates": "^18.2.2",
+    "react-dnd": "^7.0.0",
+    "react-dnd-html5-backend": "^7.0.0",
+    "react-dom": "^16.6.3",
+    "react-modal": "^3.6.1",
+    "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "superagent": "^4.1.0"
+  },
+  "license": "MIT"
+}
