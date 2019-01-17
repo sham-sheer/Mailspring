@@ -136,6 +136,7 @@ load(`PreferencesUIStore`, 'flux/stores/preferences-ui-store');
 load(`FocusedContentStore`, 'flux/stores/focused-content-store');
 load(`MessageBodyProcessor`, 'flux/stores/message-body-processor');
 load(`FocusedContactsStore`, 'flux/stores/focused-contacts-store');
+load(`RightSidebarContentStore`, 'flux/stores/right-sidebar-content-store');
 load(`FolderSyncProgressStore`, 'flux/stores/folder-sync-progress-store');
 load(`FocusedPerspectiveStore`, 'flux/stores/focused-perspective-store');
 load(`SearchableComponentStore`, 'flux/stores/searchable-component-store');

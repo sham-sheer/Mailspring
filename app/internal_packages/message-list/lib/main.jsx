@@ -19,10 +19,10 @@ export function activate() {
       location: WorkspaceStore.Location.MessageList,
     });
     ComponentRegistry.register(SidebarParticipantPicker, {
-      location: WorkspaceStore.Location.MessageListSidebar,
+      location: WorkspaceStore.Location.RightSidebar,
     });
     ComponentRegistry.register(SidebarPluginContainer, {
-      location: WorkspaceStore.Location.MessageListSidebar,
+      location: WorkspaceStore.Location.RightSidebar,
     });
     ComponentRegistry.register(MessageListHiddenMessagesToggle, {
       role: 'MessageListHeaders',

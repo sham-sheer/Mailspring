@@ -54,10 +54,10 @@ class WorkspaceStore extends MailspringStore {
     this.Sheet = Sheet = {};
 
     this._hiddenLocations = AppEnv.config.get('core.workspace.hiddenLocations') || {
-      "MessageListSidebar": {
-        "id": "MessageListSidebar",
+      "RightSidebar": {
+        "id": "RightSidebar",
         "Toolbar": {
-          "id": "MessageListSidebar:Toolbar"
+          "id": "RightSidebar:Toolbar"
         }
       }
     };
@@ -69,11 +69,11 @@ class WorkspaceStore extends MailspringStore {
         'Threads',
         { root: true },
         {
-          list: ['RootSidebar', 'ThreadList', 'QuickSidebar', 'MessageListSidebar'],
-          split: ['RootSidebar', 'ThreadList', 'MessageList', 'QuickSidebar', 'MessageListSidebar'],
+          list: ['RootSidebar', 'ThreadList', 'QuickSidebar', 'RightSidebar'],
+          split: ['RootSidebar', 'ThreadList', 'MessageList', 'QuickSidebar', 'RightSidebar'],
         }
       );
-      this.defineSheet('Thread', {}, { list: ['RootSidebar', 'MessageList', 'QuickSidebar', 'MessageListSidebar'] });
+      this.defineSheet('Thread', {}, { list: ['RootSidebar', 'MessageList', 'QuickSidebar', 'RightSidebar'] });
     } else {
       this.defineSheet('Global');
     }

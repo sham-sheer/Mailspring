@@ -3,8 +3,8 @@ import SidebarParticipantProfile from './sidebar-participant-profile';
 import SidebarRelatedThreads from './sidebar-related-threads';
 
 export function activate() {
-  ComponentRegistry.register(SidebarParticipantProfile, { role: 'MessageListSidebar:ContactCard' });
-  ComponentRegistry.register(SidebarRelatedThreads, { role: 'MessageListSidebar:ContactCard' });
+  ComponentRegistry.register(SidebarParticipantProfile, { role: 'RightSidebar:ContactCard' });
+  ComponentRegistry.register(SidebarRelatedThreads, { role: 'RightSidebar:ContactCard' });
 }
 
 export function deactivate() {

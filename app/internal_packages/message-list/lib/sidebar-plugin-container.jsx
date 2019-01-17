@@ -1,7 +1,7 @@
-import { React, PropTypes, FocusedContactsStore } from 'mailspring-exports';
+import { React, PropTypes, FocusedContactsStore, RightSidebarContentStore } from 'mailspring-exports';
 import { InjectedComponentSet } from 'mailspring-component-kit';
 
-class FocusedContactStorePropsContainer extends React.Component {
+export default class SidebarContainer extends React.Component {
   static displayName = 'FocusedContactStorePropsContainer';
 
   constructor(props) {
@@ -10,11 +10,18 @@ class FocusedContactStorePropsContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = FocusedContactsStore.listen(this._onChange);
-  }
+    this.unsubscribe1 = RightSidebarContentStore.listen(this._onChange);
+    const data = this.state.rightSidebarContentData;
+    if (data && data.store) {
+      this.unsubscribe2 = data.store.listen(this._onChange);
+    }    
+   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    this.unsubscribe1();
+    if (this.unsubscribe2) {
+      this.unsubscribe2();
+    }
   }
 
   _onChange = () => {
@@ -23,58 +30,37 @@ class FocusedContactStorePropsContainer extends React.Component {
 
   _getStateFromStores() {
     return {
-      sortedContacts: FocusedContactsStore.sortedContacts(),
-      focusedContact: FocusedContactsStore.focusedContact(),
-      focusedContactThreads: FocusedContactsStore.focusedContactThreads(),
+      rightSidebarContentType: RightSidebarContentStore.contentType,
+      rightSidebarContentData: RightSidebarContentStore.contentData,
     };
+    if (this.unsubscribe2){
+      this.unsubscribe2();
+    }
+    const data = this.state.rightSidebarContentData;
+    if (data && data.store) {
+      this.unsubscribe2 = data.store.listen(this._onChange);
+    }
   }
 
   render() {
     let classname = 'sidebar-section';
     let inner = null;
+    const props = this.props;
+
     if (this.state.focusedContact) {
       classname += ' visible';
-      inner = React.cloneElement(this.props.children, this.state);
+      inner = (
+        <InjectedComponentSet
+          className="sidebar-content"
+          key={this.state.rightSidebarContentType}
+          matching={{ role: `RightSidebar:${this.state.rightSidebarContentType}` }}
+          direction="column"
+          exposedProps={{
+            data: this.state.rightSidebarContentData
+          }}
+        />
+      );
     }
     return <div className={classname}>{inner}</div>;
-  }
-}
-
-const SidebarPluginContainerInner = props => {
-  return (
-    <InjectedComponentSet
-      className="sidebar-contact-card"
-      key={props.focusedContact.email}
-      matching={{ role: 'MessageListSidebar:ContactCard' }}
-      direction="column"
-      exposedProps={{
-        contact: props.focusedContact,
-        contactThreads: props.focusedContactThreads,
-      }}
-    />
-  );
-};
-
-SidebarPluginContainerInner.propTypes = {
-  focusedContact: PropTypes.object,
-  focusedContactThreads: PropTypes.array,
-};
-
-export default class SidebarPluginContainer extends React.Component {
-  static displayName = 'SidebarPluginContainer';
-
-  static containerStyles = {
-    order: 1,
-    flexShrink: 0,
-    minWidth: 200,
-    maxWidth: 300,
-  };
-
-  render() {
-    return (
-      <FocusedContactStorePropsContainer>
-        <SidebarPluginContainerInner />
-      </FocusedContactStorePropsContainer>
-    );
   }
 }

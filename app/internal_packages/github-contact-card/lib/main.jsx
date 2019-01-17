@@ -18,7 +18,7 @@ export function activate() {
   // This sidebar is to the right of the Message List in both split pane mode
   // and list mode.
   ComponentRegistry.register(GithubContactCardSection, {
-    role: 'MessageListSidebar:ContactCard',
+    role: 'RightSidebar:ContactCard',
   });
 }
 

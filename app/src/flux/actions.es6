@@ -171,7 +171,7 @@ class Actions {
   with one of the Sheet location constants:
 
   ```
-  Actions.toggleWorkspaceLocationHidden(WorkspaceStore.Location.MessageListSidebar)
+  Actions.toggleWorkspaceLocationHidden(WorkspaceStore.Location.RightSidebar)
   ```
   */
   static toggleWorkspaceLocationHidden = ActionScopeWindow;
@@ -413,6 +413,8 @@ class Actions {
   // FullContact Sidebar
   static getFullContactDetails = ActionScopeWindow;
   static focusContact = ActionScopeWindow;
+  static changeRightSidebarContentType = ActionScopeWindow;
+  static changeRightSidebarContentData = ActionScopeWindow;
 
   // Account Sidebar
   static setCollapsedSidebarItem = ActionScopeWindow;
@@ -454,7 +456,7 @@ class Actions {
 
   ```javascript
   WorkspaceStore.defineSheet('Thread', {}, {
-    list: ['MessageList', 'MessageListSidebar'],
+    list: ['MessageList', 'RightSidebar'],
   });
 
   ...

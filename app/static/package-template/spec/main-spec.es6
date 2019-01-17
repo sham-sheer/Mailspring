@@ -12,7 +12,7 @@ describe('activate', () => {
       role: 'Composer:ActionButton',
     });
     expect(ComponentRegistry.register).toHaveBeenCalledWith(MyMessageSidebar, {
-      role: 'MessageListSidebar:ContactCard',
+      role: 'RightSidebar:ContactCard',
     });
   });
 });

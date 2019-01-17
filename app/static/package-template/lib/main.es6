@@ -11,7 +11,7 @@ export function activate() {
     role: 'Composer:ActionButton',
   });
   ComponentRegistry.register(MyMessageSidebar, {
-    role: 'MessageListSidebar:ContactCard',
+    role: 'RightSidebar:ContactCard',
   });
 }
 

@@ -1,4 +1,4 @@
-import { WorkspaceStore, Actions } from 'mailspring-exports';
+import { WorkspaceStore, FocusedContactsStore, Actions } from 'mailspring-exports';
 import { RetinaImg } from 'mailspring-component-kit';
 import React from 'react';
 
@@ -7,7 +7,7 @@ export default class ModeToggle extends React.Component {
 
   constructor(props) {
     super(props);
-    this.column = WorkspaceStore.Location.MessageListSidebar;
+    this.column = WorkspaceStore.Location.RightSidebar;
     this.state = this._getStateFromStores();
   }
 
@@ -45,6 +45,11 @@ export default class ModeToggle extends React.Component {
 
   _onToggleMode = () => {
     Actions.toggleWorkspaceLocationHidden(this.column);
+    const store = FocusedContactsStore;
+    const contact = store.focusedContact();
+    const focusedContactThreads = store.focusedContactThreads();
+    const data = { store, contact, focusedContactThreads };
+    Actions.changeRightSidebarContentData(data);
   };
 
   render() {

@@ -223,7 +223,9 @@ export default class SidebarParticipantProfile extends React.Component {
       loading: false,
       trialing: !IdentityStore.hasProFeatures(),
     };
-    const contactState = ParticipantProfileDataSource.getCache(props.contact.email);
+    const data = this.props.data;
+    const contact = data.contact;
+    const contactState = ParticipantProfileDataSource.getCache(contact.email);
     if (contactState) {
       this.state = Object.assign(this.state, { loaded: true }, contactState);
     }
