@@ -31,6 +31,7 @@ export default class QuickSidebar extends React.Component {
 
   changeSidebarDemoContent = (data) => {
     const store = rightSideBarDemoStore;
+    Actions.changeRightSidebarContentType('Demo');
     Actions.changeRightSidebarContentData({message:'passed from props.data.message 2', store});
     Actions.changeRightSidebarDemoContent({id: this.id++, message:'hello demo -- '});
   }

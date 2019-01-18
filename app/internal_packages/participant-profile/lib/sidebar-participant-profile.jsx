@@ -277,7 +277,7 @@ export default class SidebarParticipantProfile extends React.Component {
     if (!this.state.loading) {
       this.setState({ loading: true });
     }
-    const contact = this.state.contact;
+    const contact = this.state.contact || this.props.data.contact || {fullName:()=>''};
     ParticipantProfileDataSource.find(contact.email).then(result => {
       if (!this._mounted) {
         return;
@@ -303,7 +303,7 @@ export default class SidebarParticipantProfile extends React.Component {
     if (!this.state.trialing || this.state.loaded) {
       return;
     }
-    const contact = this.props.data.contact;
+    const contact = this.props.data.contact || this.props.data.contact || {fullName:()=>''};;
     if (!contact.email || Utils.likelyNonHumanEmail(contact.email)) {
       return;
     }
@@ -414,7 +414,7 @@ export default class SidebarParticipantProfile extends React.Component {
 
   _renderPersonInfo() {
     const { facebook, linkedin, twitter, employment, location, bio } = this.state.person || {};
-    const contact = this.state.contact || {fullName:()=>''};
+    const contact = this.state.contact || this.props.data.contact || {fullName:()=>''};
 
     return (
       <div className="participant-profile">
