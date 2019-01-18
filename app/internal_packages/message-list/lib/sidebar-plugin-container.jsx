@@ -47,20 +47,19 @@ export default class SidebarContainer extends React.Component {
     let inner = null;
     const props = this.props;
 
-    if (this.state.focusedContact) {
-      classname += ' visible';
-      inner = (
-        <InjectedComponentSet
-          className="sidebar-content"
-          key={this.state.rightSidebarContentType}
-          matching={{ role: `RightSidebar:${this.state.rightSidebarContentType}` }}
-          direction="column"
-          exposedProps={{
-            data: this.state.rightSidebarContentData
-          }}
-        />
-      );
-    }
+    classname += ' visible';
+    inner = (
+      <InjectedComponentSet
+        className="sidebar-content"
+        key={this.state.rightSidebarContentType}
+        matching={{ role: `RightSidebar:${this.state.rightSidebarContentType}` }}
+        direction="column"
+        exposedProps={{
+          data: this.state.rightSidebarContentData
+        }}
+      />
+    );
+  
     return <div className={classname}>{inner}</div>;
   }
 }

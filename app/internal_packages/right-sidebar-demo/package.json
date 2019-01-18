@@ -1,0 +1,16 @@
+{
+  "name": "right-sidebar-demo",
+  "version": "0.1.0",
+  "title": "Right Sidebar Demo",
+  "description": "right sidebar demo",
+  "isOptional": false,
+  "syncInit": true,
+  "main": "lib/main",
+  "windowTypes": {
+    "default": true
+  },
+  "engines": {
+    "mailspring": "*"
+  },
+  "license": "GPL-3.0"
+}

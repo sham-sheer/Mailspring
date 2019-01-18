@@ -415,6 +415,7 @@ class Actions {
   static focusContact = ActionScopeWindow;
   static changeRightSidebarContentType = ActionScopeWindow;
   static changeRightSidebarContentData = ActionScopeWindow;
+  static changeRightSidebarDemoContent = ActionScopeWindow;
 
   // Account Sidebar
   static setCollapsedSidebarItem = ActionScopeWindow;

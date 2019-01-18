@@ -39,19 +39,21 @@ export default class RelatedThreads extends React.Component {
   }
 
   _hasToggle() {
-    return this.props.contactThreads.length > this.DEFAULT_NUM;
+    const contactThreads = this.props.data.contactThreads || [];
+    return contactThreads.length > this.DEFAULT_NUM;
   }
 
   render() {
     let limit;
+    const contactThreads = this.props.data.contactThreads || [];
     if (this.state.expanded) {
-      limit = this.props.contactThreads.length;
+      limit = contactThreads.length;
     } else {
-      limit = Math.min(this.props.contactThreads.length, this.DEFAULT_NUM);
+      limit = Math.min(contactThreads.length, this.DEFAULT_NUM);
     }
 
     const height = (limit + (this._hasToggle() ? 1 : 0)) * 31;
-    const shownThreads = this.props.contactThreads.slice(0, limit);
+    const shownThreads = contactThreads.slice(0, limit);
     const threads = shownThreads.map(thread => {
       const { snippet, subject, lastMessageReceivedTimestamp } = thread;
       const snippetStyles = subject && subject.length ? { marginLeft: '1em' } : {};

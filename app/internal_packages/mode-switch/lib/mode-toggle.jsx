@@ -46,6 +46,7 @@ export default class ModeToggle extends React.Component {
   _onToggleMode = () => {
     Actions.toggleWorkspaceLocationHidden(this.column);
     const store = FocusedContactsStore;
+    Actions.changeRightSidebarContentType('ContactCard');
     const contact = store.focusedContact();
     const focusedContactThreads = store.focusedContactThreads();
     const data = { store, contact, focusedContactThreads };

@@ -18,9 +18,9 @@ export function activate() {
     ComponentRegistry.register(MessageList, {
       location: WorkspaceStore.Location.MessageList,
     });
-    ComponentRegistry.register(SidebarParticipantPicker, {
-      location: WorkspaceStore.Location.RightSidebar,
-    });
+    // ComponentRegistry.register(SidebarParticipantPicker, {
+    //   location: WorkspaceStore.Location.RightSidebar,
+    // });
     ComponentRegistry.register(SidebarPluginContainer, {
       location: WorkspaceStore.Location.RightSidebar,
     });

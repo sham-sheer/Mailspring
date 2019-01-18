@@ -63,7 +63,12 @@ export default class Sheet extends React.Component {
 
   _columnFlexboxElements() {
     return this.state.columns.map((column, idx) => {
-      const { maxWidth, minWidth, handle, location, width } = column;
+      let { maxWidth, minWidth, handle, location, width } = column;
+
+      // cxm---: temparary code:
+      if (idx === 4) {
+        minWidth = '200px';
+      }
 
       if (minWidth !== maxWidth && maxWidth < FLEX) {
         return (

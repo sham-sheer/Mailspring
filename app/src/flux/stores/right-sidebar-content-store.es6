@@ -25,9 +25,6 @@ class RightSidebarContentStore extends MailspringStore {
     this.trigger();
   }
   _onchangeRightSidebarContentData = data => {
-    const contact = FocusedContactsStore.focusedContact();
-    const focusedContactThreads = FocusedContactsStore.focusedContactThreads();
-    data = { contact, focusedContactThreads };
     this.contentData = data;
     this.trigger();
   }

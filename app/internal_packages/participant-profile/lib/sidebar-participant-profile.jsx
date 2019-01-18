@@ -6,6 +6,7 @@ import {
   DOMUtils,
   RegExpUtils,
   Utils,
+  FocusedContactsStore,
 } from 'mailspring-exports';
 import { RetinaImg } from 'mailspring-component-kit';
 import moment from 'moment-timezone';
@@ -52,12 +53,12 @@ class ProfilePictureOrColorBox extends React.Component {
   render() {
     const { contact, loading, avatar } = this.props;
 
-    const hue = Utils.hueForString(contact.email);
+    const hue = 'jhhlk' // Utils.hueForString(contact.email);
     const bgColor = `hsl(${hue}, 50%, 45%)`;
 
     let content = (
       <div className="default-profile-image" style={{ backgroundColor: bgColor }}>
-        {contact.nameAbbreviation()}
+        {contact.nameAbbreviation && contact.nameAbbreviation()}
       </div>
     );
 
@@ -222,10 +223,11 @@ export default class SidebarParticipantProfile extends React.Component {
       loaded: false,
       loading: false,
       trialing: !IdentityStore.hasProFeatures(),
+      contact: props.data.contact,
     };
     const data = this.props.data;
     const contact = data.contact;
-    const contactState = ParticipantProfileDataSource.getCache(contact.email);
+    const contactState = ParticipantProfileDataSource.getCache(contact && contact.email);
     if (contactState) {
       this.state = Object.assign(this.state, { loaded: true }, contactState);
     }
@@ -233,6 +235,9 @@ export default class SidebarParticipantProfile extends React.Component {
 
   componentDidMount() {
     this._mounted = true;
+    this._usub = FocusedContactsStore.listen(() => {
+      return this.setState(this._getStateFromStores());
+    });
     if (!this.state.loaded && !this.state.trialing) {
       // Wait until we know they've "settled" on this email to reduce the number of
       // requests to the contact search endpoint.
@@ -243,6 +248,12 @@ export default class SidebarParticipantProfile extends React.Component {
 
   componentWillUnmount() {
     this._mounted = false;
+    this._usub();
+  }
+  _getStateFromStores() {
+    const contact = FocusedContactsStore.focusedContact();
+    const contactState = ParticipantProfileDataSource.getCache(contact && contact.email);
+    return Object.assign({}, this.state, { loaded: true }, {contact});
   }
 
   _onClickedToTry = async () => {
@@ -266,7 +277,8 @@ export default class SidebarParticipantProfile extends React.Component {
     if (!this.state.loading) {
       this.setState({ loading: true });
     }
-    ParticipantProfileDataSource.find(this.props.contact.email).then(result => {
+    const contact = this.state.contact;
+    ParticipantProfileDataSource.find(contact.email).then(result => {
       if (!this._mounted) {
         return;
       }
@@ -291,7 +303,8 @@ export default class SidebarParticipantProfile extends React.Component {
     if (!this.state.trialing || this.state.loaded) {
       return;
     }
-    if (!this.props.contact.email || Utils.likelyNonHumanEmail(this.props.contact.email)) {
+    const contact = this.props.data.contact;
+    if (!contact.email || Utils.likelyNonHumanEmail(contact.email)) {
       return;
     }
 
@@ -401,18 +414,20 @@ export default class SidebarParticipantProfile extends React.Component {
 
   _renderPersonInfo() {
     const { facebook, linkedin, twitter, employment, location, bio } = this.state.person || {};
+    const contact = this.state.contact || {fullName:()=>''};
 
     return (
       <div className="participant-profile">
         <ProfilePictureOrColorBox
           loading={this.state.loading}
           avatar={this.state.avatar}
-          contact={this.props.contact}
+          contact={contact}
         />
+        
         <div className="personal-info">
-          {this.props.contact.fullName() !== this.props.contact.email && (
+          {contact.fullName() !== contact.email && (
             <div className="selectable larger" onClick={this._onSelect}>
-              {this.props.contact.fullName()}
+              {contact.fullName()}
             </div>
           )}
 
@@ -424,7 +439,7 @@ export default class SidebarParticipantProfile extends React.Component {
           )}
 
           <div className="selectable email" onClick={this._onSelect}>
-            {this.props.contact.email}
+            {contact.email}
           </div>
 
           <div className="social-profiles-wrap">
@@ -443,6 +458,7 @@ export default class SidebarParticipantProfile extends React.Component {
   }
 
   render() {
+    console.log('cxm*** SidebarParticipantprofile.render');
     return (
       <div>
         {this._renderPersonInfo()}
