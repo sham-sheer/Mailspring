@@ -1,14 +1,14 @@
-const { ComponentRegistry, WorkspaceStore } = require('mailspring-exports');
+import { ComponentRegistry, WorkspaceStore } from 'mailspring-exports';
 
 import MyComposerButton from './my-composer-button';
 import MyMessageSidebar from './my-message-sidebar';
-import MyCalendarView from '../components/calendar-view';
+import CalendarView from './calendar-view';
 
 // Activate is called when the package is loaded. If your package previously
 // saved state using `serialize` it is provided.
 //
 export function activate() {
-  ComponentRegistry.register(MyCalendarView, {
+  ComponentRegistry.register(CalendarView, {
     location: WorkspaceStore.Location.RootSidebar,
   });
 }
@@ -25,5 +25,5 @@ export function serialize() {}
 // subscribing to events, release them here.
 //
 export function deactivate() {
-  ComponentRegistry.unregister(MyCalendarView);
+  ComponentRegistry.unregister(CalendarView);
 }

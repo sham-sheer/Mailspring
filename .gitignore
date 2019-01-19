@@ -74,4 +74,8 @@ client_secret.json
 **.tar.gz
 /app/mailsync.dSYM
 
+<<<<<<< HEAD
+=======
+# Webstorm
+>>>>>>> e0d53e0bde81624219d0b9d5a0014bb36e2c9893
 .idea
